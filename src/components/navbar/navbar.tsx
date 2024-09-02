@@ -1,8 +1,43 @@
-import React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import ikea from "../icons/ikea.svg";
+import cart from "../icons/cart.svg";
+import profile from "../icons/profile.svg";
 
-export function Navbar(){
-    
-    return(
-        <></>
-    );
+export function Navbar() {
+  return (
+    <nav className="h-16 w-full sticky bg-blue-700 flex flex-col justify-between p-4">
+      <div className="h-full w-full flex justify-between items-center px-2">
+        <Link href="/">
+          <Image src={ikea} alt="Ikea Logo" height={64} width={84} />
+        </Link>
+        <div className="hidden sm:flex flex-grow justify-center p-1 text-2xl text-white">
+          Discounts up to 30%!!
+        </div>
+        <div>
+          <ul className="flex gap-4 items-center p-2">
+            <li className="flex items-center ml-10 text-white ">
+              <Link href="/cart" className="flex items-center">
+                <div className="hidden sm:flex mr-5">
+                  <Image src={cart} height={26} alt="Cart Icon" />
+                </div>
+                <div className="hover:border-b-2">Cart</div>
+              </Link>
+            </li>
+            <li className="flex items-center ml-10 text-white">
+              <Link href="/profile" className="flex items-center">
+                <div className="hidden sm:flex mr-5">
+                  <Image src={profile} height={26} alt="Profile Icon" />
+                </div>
+                <div className="hover:border-b-2">
+                Profile
+                </div>
+               
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  );
 }

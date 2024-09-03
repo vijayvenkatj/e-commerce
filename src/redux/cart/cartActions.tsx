@@ -8,7 +8,6 @@ import { createAsyncThunk, Dispatch, isRejectedWithValue} from "@reduxjs/toolkit
 
 export const fetchCart = createAsyncThunk('cart/fetchCart',async(thunkAPI)=>{
     try{
-        const dispatch = useDispatch()
         const cart = await axios({
             url: "http://localhost:3000/api/cart/all",
             method: "get",
@@ -43,29 +42,25 @@ export const addCartItem = createAsyncThunk('cart/addCartItem',async(Item: cartI
         return error
     }
 })
-// export const addCartItem = (Item:cartItem) => async(dispatch: Dispatch ) =>{
-//     try{
-        
-//         const cart = await axios({
-//             url: "http://localhost:3000/api/cart/addItem",
-//             method: "post",
-//             data:{
-//                 product: Item.product,
-//                 image: Item.image,
-//                 quantity: Item.quantity,
-//                 price: Item.price
-//             }
-//         })
-//         dispatch(addItem(Item))
-//         if(cart){
-//             return "Item added successfully..."
-//         }
-//     }
-//     catch(error){
-//         console.log("Error adding cartItems",error)
-//     }
-// }
 
+export const updateCartItem = createAsyncThunk('cart/updateCartItem',async(id: number,thunkAPI)=>{
+    try{
+        const cart = await axios({
+            url: "http://localhost:3000/api/cart/updateItem",
+            method: "post",
+            data:{
+                id 
+            }
+        })
+        if(cart){
+            return cart;
+        }
+    }
+    catch(error){
+        console.log("Error adding cartItems",error)
+        return error
+    }
+})
 
 
 interface cartItem{

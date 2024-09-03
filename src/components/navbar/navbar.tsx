@@ -6,17 +6,17 @@ import profile from "../icons/profile.svg";
 
 export function Navbar() {
   return (
-    <nav className="h-16 w-full sticky bg-blue-700 flex flex-col justify-between p-4">
+    <nav className="h-16 w-full sticky bg-white flex flex-col justify-between p-4">
       <div className="h-full w-full flex justify-between items-center px-2">
         <Link href="/">
           <Image src={ikea} alt="Ikea Logo" height={64} width={84} />
         </Link>
-        <div className="hidden sm:flex flex-grow justify-center p-1 text-2xl text-white">
+        <div className="hidden sm:flex flex-grow justify-center p-1 text-2xl text-black">
           Discounts up to 30%!!
         </div>
         <div>
           <ul className="flex gap-4 items-center p-2">
-            <li className="flex items-center ml-10 text-white ">
+            <li className="flex items-center ml-10 text-black ">
               <Link href="/cart" className="flex items-center">
                 <div className="hidden sm:flex mr-5">
                   <Image src={cart} height={26} alt="Cart Icon" />
@@ -24,7 +24,7 @@ export function Navbar() {
                 <div className="hover:border-b-2">Cart</div>
               </Link>
             </li>
-            <li className="flex items-center ml-10 text-white">
+            <li className="flex items-center ml-10 text-black">
               <Link href="/profile" className="flex items-center">
                 <div className="hidden sm:flex mr-5">
                   <Image src={profile} height={26} alt="Profile Icon" />

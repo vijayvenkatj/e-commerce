@@ -15,7 +15,7 @@ export async function GET(){
     })
     const data = res;
     return NextResponse.json(data)
-
+}
 
 // import { NextRequest, NextResponse } from "next/server";
 // import { PrismaClient } from "@prisma/client";

@@ -15,7 +15,8 @@
 //     })
 //     const data = res;
 //     return NextResponse.json(data)
-// }
+
+
 import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 
@@ -35,38 +36,36 @@ export async function GET(request: NextRequest) {
     });
 
     // Set up the response with CORS headers
-    return NextResponse.json(res, {
-      status: 200,
-      headers: {
-        "Access-Control-Allow-Origin": "*", // Change to your specific frontend URL in production
-        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization",
-      },
-    });
+    const response = NextResponse.json(res, { status: 200 });
+    response.headers.set("Access-Control-Allow-Origin", "http://localhost:3000"); // Change to your frontend URL
+    response.headers.set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+    response.headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    response.headers.set("Access-Control-Allow-Credentials", "true");
+    
+    return response;
   } catch (error) {
     console.error("Error fetching data:", error);
 
-    return NextResponse.json(
+    const errorResponse = NextResponse.json(
       { error: "An error occurred while fetching data" },
-      {
-        status: 500,
-        headers: {
-          "Access-Control-Allow-Origin": "*", // Change to your specific frontend URL in production
-          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-          "Access-Control-Allow-Headers": "Content-Type, Authorization",
-        },
-      }
+      { status: 500 }
     );
+
+    errorResponse.headers.set("Access-Control-Allow-Origin", "http://localhost:3000");
+    errorResponse.headers.set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+    errorResponse.headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    errorResponse.headers.set("Access-Control-Allow-Credentials", "true");
+
+    return errorResponse;
   }
 }
 
-// Handle OPTIONS requests
+// Handle OPTIONS requests for CORS
 export function OPTIONS() {
-  return NextResponse.json({}, {
-    headers: {
-      "Access-Control-Allow-Origin": "*", // Change to your specific frontend URL in production
-      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-      "Access-Control-Allow-Headers": "Content-Type, Authorization",
-    },
-  });
+  const response = NextResponse.json({}, { status: 204 });
+  response.headers.set("Access-Control-Allow-Origin", "http://localhost:3000"); // Change to your frontend URL
+  response.headers.set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  response.headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  response.headers.set("Access-Control-Allow-Credentials", "true");
+  return response;
 }

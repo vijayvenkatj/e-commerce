@@ -4,7 +4,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/navbar/navbar";
 import {Footer} from "@/components/footer/footer";
-
+import { Banner } from "@/components/banner/Banner";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -16,6 +16,7 @@ export default function RootLayout({children,}: Readonly<{children: React.ReactN
   return (
       <html lang="en">
       <body className={inter.className}>
+        <Banner />
         <Navbar />
         {children}
         <Footer />

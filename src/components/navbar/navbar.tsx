@@ -6,14 +6,14 @@ import profile from "../icons/profile.svg";
 
 export function Navbar() {
   return (
-    <nav className="h-16 w-full sticky bg-white flex flex-col justify-between p-4">
+    <nav className="h-16 w-full sticky bg-white flex flex-col justify-between p-4 shadow-lg">
       <div className="h-full w-full flex justify-between items-center px-2">
         <Link href="/">
           <Image src={ikea} alt="Ikea Logo" height={64} width={84} />
         </Link>
-        <div className="hidden sm:flex flex-grow justify-center p-1 text-2xl text-black">
+        {/* <div className="hidden sm:flex flex-grow justify-center p-1 text-2xl text-black">
           Discounts up to 30%!!
-        </div>
+        </div> */}
         <div>
           <ul className="flex gap-4 items-center p-2">
             <li className="flex items-center ml-10 text-black ">
@@ -25,14 +25,13 @@ export function Navbar() {
               </Link>
             </li>
             <li className="flex items-center ml-10 text-black">
-              <Link href="/profile" className="flex items-center">
+              <Link href="/login" className="flex items-center">
                 <div className="hidden sm:flex mr-5">
                   <Image src={profile} height={26} alt="Profile Icon" />
                 </div>
                 <div className="hover:border-b-2">
-                Profile
+                Login
                 </div>
-               
               </Link>
             </li>
           </ul>

@@ -1,0 +1,21 @@
+import Bag from '../icons/emptybag.png'
+import Image from 'next/image'
+import Link from 'next/link';
+import { Button } from "@/components/ui/button";
+
+export function EmptyCart() {
+    return (
+      <div className="px-20 p-10 relative flex justify-between items-center min-w-full">
+        <div>
+          <h1 className='font-extrabold text-4xl mb-4'>Your shopping bag is empty</h1>
+          <h1 className='text-gray-600 mb-12'>Looks like you have not added any items to your shopping bag yet.</h1>
+          <Link href='/'>
+          <Button className='w-full h-14'>Go back to Home</Button>
+          </Link>
+          
+        </div>
+        <Image src={Bag} alt="InsertBagImage" className='hidden sm:flex' />
+      </div>
+    );
+  }
+  

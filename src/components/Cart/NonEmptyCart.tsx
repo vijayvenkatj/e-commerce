@@ -28,6 +28,7 @@ export function NonEmptyCart() {
         }
         return total;
       }, 0);
+      console.log("h2")
       setTotalQuantity(newTotalQuantity);
     }, [items]);
     

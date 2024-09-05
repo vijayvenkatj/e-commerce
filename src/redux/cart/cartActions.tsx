@@ -7,7 +7,7 @@ export const fetchCart = createAsyncThunk('cart/fetchCart', async (_, thunkAPI) 
   try {
     const cart = await axios({
       url: `${BASE_URL}/api/cart/all`,
-      method: "get",
+      method: "post",
     });
     return cart.data as cartItem[];
   } catch (error) {

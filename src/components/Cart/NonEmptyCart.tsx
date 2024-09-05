@@ -18,18 +18,18 @@ export function NonEmptyCart() {
 
      useEffect(() => {
      dispatch(fetchCart());
+     console.log("h1")
      }, [dispatch]);
 
     useEffect(() => {
-    const newTotalQuantity = items.reduce((total: any, item: any) => {
-      if (Number(item.quantity) > 0) {
-        return total + Number(item.quantity);
-      }
-      return total;
-    }, 0);
-
-    setTotalQuantity(newTotalQuantity);
-    }, [dispatch,items]);
+      const newTotalQuantity = items.reduce((total: any, item: any) => {
+        if (Number(item.quantity) > 0) {
+          return total + Number(item.quantity);
+        }
+        return total;
+      }, 0);
+      setTotalQuantity(newTotalQuantity);
+    }, [items]);
     
     return (
       <div className="px-20 p-10 relative flex justify-between items-center min-w-full">

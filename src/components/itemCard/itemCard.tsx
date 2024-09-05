@@ -22,7 +22,7 @@ export const ItemCard: any = ({ id,image,title,description }: any) => {
   async function AddtoCart(id:number) {
       const res = await dispatch(updateCartItem(id))
       if (res.meta.requestStatus === 'fulfilled') {
-        dispatch(fetchCart());
+        await dispatch(fetchCart());
       }
       toast({
         description: "Item added to Cart successfully",

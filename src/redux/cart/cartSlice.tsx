@@ -64,11 +64,12 @@ export const cartSlice = createSlice({
         });
         builder.addCase(updateCartItem.fulfilled, (state, action:any) => {
             state.isloading = false;
-            state.items = state.items.filter((item)=>{
-                if(item.id == action.payload.id){
-                    item.quantity = action.payload.quantity;
+            state.items = state.items.map((item) => {
+                if (item.id === action.payload.id) {
+                  return { ...item, quantity: action.payload.quantity };
                 }
-            });
+                return item;
+            })
         });
         builder.addCase(updateCartItem.rejected, (state, action) => {
             state.isloading = false;

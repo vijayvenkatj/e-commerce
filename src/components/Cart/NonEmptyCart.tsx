@@ -17,12 +17,10 @@ export function NonEmptyCart() {
     const { items, isloading, error } = useSelector((state: any) => state.cart);
 
      useEffect(() => {
-    // Fetch cart data when the component mounts
      dispatch(fetchCart());
-     }, [dispatch]); // Ensure the dispatch function is the only dependency here
+     }, [dispatch]);
 
     useEffect(() => {
-    // Calculate total quantity whenever items change
     const newTotalQuantity = items.reduce((total: any, item: any) => {
       if (Number(item.quantity) > 0) {
         return total + Number(item.quantity);
@@ -31,7 +29,7 @@ export function NonEmptyCart() {
     }, 0);
 
     setTotalQuantity(newTotalQuantity);
-    }, [items]); // Correct dependency array
+    }, [dispatch,items]);
     
     return (
       <div className="px-20 p-10 relative flex justify-between items-center min-w-full">

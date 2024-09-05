@@ -9,8 +9,7 @@ export const fetchCart = createAsyncThunk('cart/fetchCart', async (_, thunkAPI) 
       url: `${BASE_URL}/api/cart/all`,
       method: "get",
     });
-    const cartItems = cart.data;
-    return cartItems as cartItem[];
+    return cart.data as cartItem[];
   } catch (error) {
     console.log("Error fetching cartItems", error);
     return error as string;

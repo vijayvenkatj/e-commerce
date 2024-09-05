@@ -1,10 +1,9 @@
 import { fetchCart } from "@/redux/cart/cartActions";
 import { ItemCard } from "../itemCard/itemCard";
 import { useEffect, useState } from "react";
-import { Snackbar } from '@mui/material/';
 import { Skeleton } from '@mui/material';
 import { useDispatch, useSelector } from "react-redux";
-import type { AppDispatch } from "@/redux/store";
+import type { AppDispatch, RootState } from "@/redux/store";
 import { Toaster } from "../ui/toaster";
 
 interface CartItem {
@@ -17,7 +16,7 @@ interface CartItem {
 
 export function DashboardCard() {
   const dispatch = useDispatch<AppDispatch>()
-  const { items, isloading, error } = useSelector((state: any) => state.cart);
+  const { items, isloading, error } = useSelector((state: RootState) => state.cart);
   console.log(items)
 
   useEffect(() => {

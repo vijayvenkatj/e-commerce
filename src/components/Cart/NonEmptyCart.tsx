@@ -12,37 +12,24 @@ import { fetchCart } from "@/redux/cart/cartActions";
 
 
 export function NonEmptyCart() {
-    // const { items, isloading, error } = useSelector((state: any) => state.cart);
     const [totalQuantity,setTotalQuantity] = useState(0)
     const dispatch = useDispatch<AppDispatch>()
     const { items, isloading, error } = useSelector((state: any) => state.cart);
-    console.log(items)
-
     useEffect(() => {
       dispatch(fetchCart())
     },[dispatch])
 
-    // const itemsincart = () => {
-    //     items.map((item: CartItem)=>{ 
-    //     if(Number(item.quantity)>0){
-    //         console.log(item.quantity)
-    //         // setTotalQuantity((prev)=>prev+Number(item.quantity))
-    //         setTotalQuantity(1)
-    //     }
-    //     })
-    //     console.log(totalQuantity)
-    // }
+    useEffect(() => {
+      const newTotalQuantity = items.reduce((total:any, item:any) => { //reduce is a function that takes in a callback function and an initial value. It returns a single value after iterating through the array.
+        if (Number(item.quantity) > 0) {
+          return total + Number(item.quantity);
+        }
+        return total;
+      }, 0);
 
-    useEffect(()=>{
-        console.log(items)
-        items.map((item: CartItem)=>{ 
-          console.log(items)
-          if(Number(item.quantity)>0){
-              console.log(item.quantity)
-              setTotalQuantity((prev)=>prev+Number(item.quantity))
-          }
-          })
-    },[items])
+      setTotalQuantity(newTotalQuantity);
+
+    }, [items]);
     
     return (
       <div className="px-20 p-10 relative flex justify-between items-center min-w-full">

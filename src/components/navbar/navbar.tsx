@@ -3,6 +3,10 @@ import Image from "next/image";
 import ikea from "../icons/ikea.svg";
 import cart from "../icons/cart.svg";
 import profile from "../icons/profile.svg";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "@/redux/store";
+import { fetchCart } from "@/redux/cart/cartActions";
 
 export function Navbar() {
   return (
@@ -22,6 +26,7 @@ export function Navbar() {
                   <Image src={cart} height={26} alt="Cart Icon" />
                 </div>
                 <div className="hover:border-b-2">Cart</div>
+                {/* <button>{items.totalQuantity}</button> */}
               </Link>
             </li>
             <li className="flex items-center ml-10 text-black">

@@ -2,9 +2,33 @@ import Bag from '../icons/emptybag.png'
 import Image from 'next/image'
 import Link from 'next/link';
 import { Button } from "@/components/ui/button";
+import { useState,useEffect } from "react";
+import { AppDispatch } from "@/redux/store";
+import { fetchCart } from "@/redux/cart/cartActions";
+import { useDispatch,useSelector } from "react-redux";
+import { NonEmptyCart } from './NonEmptyCart';
 
-export function EmptyCart() {
+export function Cart() {
+    const [totalQuantity,setTotalQuantity] = useState(0)
+    const dispatch = useDispatch<AppDispatch>()
+    const { items, isloading, error } = useSelector((state: any) => state.cart);
+
+     useEffect(() => {
+      dispatch(fetchCart());
+     }, [dispatch]);
+
+     useEffect(() => {
+        const newTotalQuantity = items.reduce((total: any, item: any) => {
+          if (Number(item.quantity) > 0) {
+            return total + Number(item.quantity);
+          }
+          return total;
+        }, 0);
+        setTotalQuantity(newTotalQuantity);
+      }, [items]);
+    console.log("Chad",items.totalQuantity)
     return (
+      totalQuantity>0?<NonEmptyCart />:
       <div className="px-20 p-10 relative flex justify-between items-center min-w-full">
         <div>
           <h1 className='font-extrabold text-4xl mb-4'>Your shopping bag is empty</h1>

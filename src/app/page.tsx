@@ -8,9 +8,7 @@ import { DashboardCard} from "@/components/DashboardCard/DashboardCard";
 export default function Home() {
   return (
     <>
-    <Provider store={store}>
       <DashboardCard />
-    </Provider>
     </>
   );
 }

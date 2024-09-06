@@ -4,7 +4,7 @@ import React from "react";
 
 export default function Home() {
   return (
-    <div className="relative min-h-full min-w-full flex justify-center">
+    <div className="relative min-h-full min-w-full flex justify-center mt-7">
     <SignIn />
     </div>
   );

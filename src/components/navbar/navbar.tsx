@@ -28,7 +28,6 @@ export function Navbar() {
             <li className="flex items-center ml-10 text-black ">
               <Link href="/cart" className="flex items-center">
                 <div className="hidden sm:flex mr-5">
-                  {/* <Image src={cart} height={26} alt="Cart Icon" /> */}
                   Cart
                 </div>
                 <div className="gap-1 flex justify-around">
@@ -43,7 +42,6 @@ export function Navbar() {
             <li className="flex items-center ml-5 text-black">
               <Link href="/login" className="flex items-center">
                 <div className="hidden sm:flex mr-5">
-                  {/* <Image src={cart} height={26} alt="Cart Icon" /> */}
                   Profile
                 </div>
                 <div>

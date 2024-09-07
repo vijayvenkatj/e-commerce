@@ -37,10 +37,10 @@ export const addCartItem = createAsyncThunk('cart/addCartItem', async (Item: car
   }
 });
 
-export const updateCartItem = createAsyncThunk('cart/updateCartItem', async (id: number, thunkAPI) => {
+export const updateCartItem = createAsyncThunk('cart/updateCartItem', async ({ id, func }: { id: number; func: string }, thunkAPI) => {
   try {
     const cart = await axios({
-      url: `${BASE_URL}/api/cart/updateItem`,
+      url: `${BASE_URL}/api/cart/${func}Quantity`,
       method: "post",
       data: {
         id,

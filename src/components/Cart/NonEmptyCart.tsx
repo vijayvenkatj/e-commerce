@@ -27,7 +27,6 @@ export function NonEmptyCart() {
         }
         return total;
       }, 0);
-      console.log(newTotalQuantity)
       setTotalQuantity(newTotalQuantity);
     }, [items]);
     

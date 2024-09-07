@@ -20,14 +20,14 @@ export const ItemCard: any = ({ id,image,title,description }: any) => {
 
   
   async function AddtoCart(id:number) {
-      const res = await dispatch(updateCartItem(id))
+      const res = await dispatch(updateCartItem({id:id,func:"add"}))
       if (res.meta.requestStatus === 'fulfilled') {
         await dispatch(fetchCart());
       }
       toast({
-        description: "Item added to Cart successfully",
+        description: `${title} added to Cart successfully`,
+        className:"bg-black text-white"
       })
-      console.log(res)
   }
   return (
     <div className="max-w-sm rounded overflow-hidden bg-white">

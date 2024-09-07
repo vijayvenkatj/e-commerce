@@ -16,8 +16,8 @@ export function OrderSummary(){
     return(
         <div className="bg-white flex flex-col shadow-sm relative min-h-screen min-w-full">
             <span className="font-extrabold text-2xl mb-5 ">Order Summary</span>
-            {items.map((item: any)=>(
-                <CheckoutItems item={item}/>
+            {items.map((item: any,key:number)=>(
+                <CheckoutItems key={key} item={item}/>
             ))}
             <div className="flex justify-between">
             <span className="font-semibold text-lg mt-5">Total:</span>

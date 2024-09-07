@@ -33,7 +33,7 @@ export function NonEmptyCart() {
     
     return (
       <div className="p-10 relative flex justify-between min-w-full">
-        <Image src={Ecomcart} alt="Insert Image here" width={700} height={300} className="hidden sm:flex"/>
+        <Image src={Ecomcart} alt="Insert Image here" width={730} height={330} className="hidden sm:flex rounded-lg"/>
         <div className="w-[640px] mt-5">
           <OrderSummary />
         </div>

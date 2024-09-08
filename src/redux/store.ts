@@ -10,7 +10,6 @@ export const store = configureStore({
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
             serializableCheck: {
-                // ignoredActions: ['cart/updateCartItem/fulfilled'],
                 ignoredPaths: ['payload.headers'],
             },
         }),

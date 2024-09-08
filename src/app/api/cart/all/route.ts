@@ -8,7 +8,6 @@ export async function POST(request: NextRequest){
             product:true,
             price: true,
             image:true,
-            quantity: true
         }
     })
     const data = res;

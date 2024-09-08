@@ -1,9 +1,7 @@
-import { store } from "@/redux/store";
 import React, { useEffect, useState } from "react";
-import { Provider, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Ecomcart from '../icons/ecomcart.jpg'
 import Image from 'next/image'
-import { Button } from "@/components/ui/button";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
 import { fetchCart } from "@/redux/cart/cartActions";

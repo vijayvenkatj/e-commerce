@@ -6,7 +6,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 export const fetchCart = createAsyncThunk('cart/fetchCart', async (_, thunkAPI) => {
   try {
     const cart = await axios({
-      url: `${BASE_URL}/api/cart/all`,
+      url: `/api/cart/all`,
       method: "post",
     });
     return cart.data as cartItem[];
@@ -59,6 +59,6 @@ interface cartItem {
   id?: number;
   product: string;
   image: string;
-  quantity: string;
+  quantity?: string;
   price: string;
 }

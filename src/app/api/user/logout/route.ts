@@ -1,7 +1,7 @@
 import ResponseCache from "next/dist/server/response-cache";
 import { NextRequest, NextResponse } from "next/server";
 
-export function PUT(request: NextRequest){
+export function GET(request: NextRequest){
     const response = NextResponse.redirect(new URL('/', request.url), 302);
 
         response.cookies.set("token", '',{

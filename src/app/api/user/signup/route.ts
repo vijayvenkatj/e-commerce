@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
         }
     })
     const token = jwt.sign({ id: user.id, email: user.email } , JWT_SECRET , {expiresIn: '1h'});
-    const response = NextResponse.redirect(new URL('/', request.url));
+    const response = NextResponse.redirect(new URL('/', request.url),302);
     response.cookies.set("token", token, {
         httpOnly: true,  
         sameSite: "lax",

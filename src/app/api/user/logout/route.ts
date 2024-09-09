@@ -1,7 +1,14 @@
+import ResponseCache from "next/dist/server/response-cache";
 import { NextRequest, NextResponse } from "next/server";
 
 export function PUT(request: NextRequest){
-    const res = NextResponse.redirect(new URL('/login',request.url))
-    res.cookies.set('token', '', { maxAge: 0, path: '/' });
-    return res
+    const response = NextResponse.redirect(new URL('/login', request.url), 302);
+
+        response.cookies.set("token", '',{
+            httpOnly: true,
+            sameSite: "lax",
+            secure: process.env.NODE_ENV === 'production',
+            path: '/',
+        });
+    return response
 }

@@ -17,10 +17,18 @@ export function Navbar() {
     const totalItems = items.reduce((total: any, item: any) => total + Number(item.quantity), 0);
     setCount(totalItems);
   }, [cartItems]);
+
   async function handleLogout(){
     const res = await axios.put('/api/user/logout')
-    window.location.href = res.request.responseURL; 
+    if(res.request.responseURL){
+      window.location.href = res.request.responseURL; 
+    }
+    else{
+      console.log("Error with redirection")
+    }
+    
   }
+
   return (
     <nav className="h-16 w-full sticky bg-white flex flex-col justify-between p-4 shadow-lg">
       <div className="h-full w-full flex justify-between items-center px-2">

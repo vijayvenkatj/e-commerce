@@ -19,7 +19,7 @@ export function Navbar() {
   }, [cartItems]);
 
   async function handleLogout(){
-    const res = await axios.put('/api/user/logout')
+    const res = await axios.get('/api/user/logout')
     if(res.request.responseURL){
       window.location.href = res.request.responseURL; 
     }

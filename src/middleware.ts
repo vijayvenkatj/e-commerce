@@ -12,11 +12,11 @@ export async function middleware(request: NextRequest) {
             return NextResponse.next();
         }
         else{
-            return NextResponse.redirect(new URL('/signup', request.url))
+            return NextResponse.redirect(new URL('/login', request.url))
         }
     }
     else{
-        return NextResponse.redirect(new URL('/signup', request.url))
+        return NextResponse.redirect(new URL('/login', request.url))
     }
 
 }

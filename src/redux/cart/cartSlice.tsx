@@ -65,7 +65,7 @@ export const cartSlice = createSlice({
         builder.addCase(updateCartItem.fulfilled, (state, action:any) => {
             state.isloading = false;
             state.items = state.items.map((item) => {
-                if (item.id === action.payload.id) {
+                if (item.id === action.payload.cartId) {
                   return { ...item, quantity: action.payload.quantity };
                 }
                 return item;

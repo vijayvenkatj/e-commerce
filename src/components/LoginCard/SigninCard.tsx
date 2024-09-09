@@ -99,7 +99,7 @@ export function SigninCard() {
         </form>
         <div className="flex justify-center mt-5">
           <Link href="/signup">
-            <span className="mt-5">New to Website? Click here to Sign Up.</span>
+            <span className="mt-5 text-gray-400 font-light text-sm">New to Website? Click here to Sign Up.</span>
           </Link>
         </div>
       </CardContent>

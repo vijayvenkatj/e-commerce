@@ -18,7 +18,7 @@ export function Navbar() {
     setCount(totalItems);
   }, [cartItems]);
   async function handleLogout(){
-    const res = await axios.post('/api/user/logout')
+    const res = await axios.put('/api/user/logout')
     window.location.href = res.request.responseURL; 
   }
   return (

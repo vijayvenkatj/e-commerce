@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
                     quantity: 1
                 },
             });
-            return NextResponse.json({ error: 'Cart item not found' }, { status: 404 });
+            return NextResponse.json({ msg: 'Cart item not found' });
         }
         
         const newQuantity = existingCartItem.quantity + 1;

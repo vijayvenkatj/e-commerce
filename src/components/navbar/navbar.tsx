@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import ikea from "../icons/ikea.svg";
 import cart from "../icons/cart.svg";
-import profile from "../icons/profile.svg";
+import axios from "axios";
 import { useState,useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
@@ -17,6 +17,10 @@ export function Navbar() {
     const totalItems = items.reduce((total: any, item: any) => total + Number(item.quantity), 0);
     setCount(totalItems);
   }, [cartItems]);
+  async function handleLogout(){
+    const res = await axios.post('/api/user/logout')
+    window.location.href = res.request.responseURL; 
+  }
   return (
     <nav className="h-16 w-full sticky bg-white flex flex-col justify-between p-4 shadow-lg">
       <div className="h-full w-full flex justify-between items-center px-2">
@@ -28,7 +32,6 @@ export function Navbar() {
             <li className="flex items-center ml-10 text-black ">
               <Link href="/cart" className="flex items-center">
                 <div className="hidden sm:flex mr-5">
-                  {/* <Image src={cart} height={26} alt="Cart Icon" /> */}
                   Cart
                 </div>
                 <div className="gap-1 flex justify-around">
@@ -40,16 +43,10 @@ export function Navbar() {
                 
               </Link>
             </li>
-            <li className="flex items-center ml-5 text-black">
-              <Link href="/login" className="flex items-center">
-                <div className="hidden sm:flex mr-5">
-                  {/* <Image src={cart} height={26} alt="Cart Icon" /> */}
-                  Profile
-                </div>
-                <div>
-                <Image src={profile} height={26} alt="Profile Icon" />
-                </div>
-              </Link>
+            <li className="flex items-center ml-0 text-black">
+              <button className="bg-white p-1 rounded text-black hover:font-semibold" onClick={handleLogout}>
+                  Logout
+              </button>
             </li>
           </ul>
         </div>

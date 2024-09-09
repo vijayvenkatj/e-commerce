@@ -15,8 +15,9 @@ import { useToast } from "@/hooks/use-toast";
 import { Toaster } from "../ui/toaster";
 import Link from "next/link";
 
-export function SigninCard() {
-  const { toast } = useToast();
+
+export function SignupCard() {
+  const { toast } = useToast()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -26,34 +27,35 @@ export function SigninCard() {
     setPassword("");
   }
 
-  async function handleSignin(e: React.FormEvent) {
+  async function handleSignup(e: React.FormEvent) {
     e.preventDefault();
     try {
-      console.log("Signing in...");
-      const res = await axios.post("/api/user/signin", {
+      console.log("Signing up...");
+      const res = await axios.post("/api/user/signup", {
         email,
         password,
       });
-
-      if (res.data.message === "Invalid email or password") {
+      console.log(res.data);
+      if(res.data.message == "User already exists."){
         toast({
           variant: "destructive",
-          title: "Invalid credentials.",
-        });
-      } else {
+          title: "User already exists.",
+        })
+      }
+      else {
         if (res.request.responseURL) {
           toast({
-            title: "User login successful.",
+            title: "User Signup successful.",
             className: "bg-black text-white",
           });
           window.location.href = res.request.responseURL; 
         }
       }
     } catch (error: any) {
-      console.log("Error during sign-in:", error);
+      console.log("Error during sign-up:", error);
       toast({
         variant: "destructive",
-        title: "An error occurred during sign-in.",
+        title: "An error occurred during sign-up.",
         description: error.response?.data?.message || "Please try again.",
       });
     }
@@ -62,11 +64,11 @@ export function SigninCard() {
   return (
     <Card className="w-[400px] bg-white">
       <CardHeader>
-        <CardTitle className="mt-2 mb-1">Login</CardTitle>
-        <CardDescription>Sign in to continue.</CardDescription>
+        <CardTitle className="mt-2 mb-1">Sign up</CardTitle>
+        <CardDescription>Sign up to continue.</CardDescription>
       </CardHeader>
       <CardContent>
-        <form onSubmit={handleSignin}>
+        <form onSubmit={handleSignup}>
           <div className="grid w-full items-center gap-4">
             <div className="flex flex-col space-y-4">
               <Label htmlFor="email">Email</Label>
@@ -89,19 +91,17 @@ export function SigninCard() {
               />
             </div>
           </div>
-
           <div className="flex justify-between mt-5">
             <Button type="button" variant="outline" onClick={CancelHandler}>
               Cancel
             </Button>
-            <Button type="submit">Sign In</Button>
+            <Button type="submit">Sign Up</Button>
           </div>
         </form>
-        <div className="flex justify-center mt-5">
-          <Link href="/signup">
-            <span className="mt-5 text-gray-400 font-light text-sm">New to Website? Click here to Sign Up.</span>
-          </Link>
+        <div className=" flex justify-center mt-5">
+        <Link href='/login'><span className="mt-5 text-gray-400 font-light text-sm">Already an user? Click here to Login.</span></Link>
         </div>
+       
       </CardContent>
       <Toaster />
     </Card>

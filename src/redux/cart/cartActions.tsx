@@ -6,7 +6,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 export const fetchCart = createAsyncThunk('cart/fetchCart', async (_, thunkAPI) => {
   try {
     const cart = await axios({
-      url: `${BASE_URL}/api/cart/all`,
+      url: `/api/cart/all`,
       method: "post",
     });
     return cart.data as cartItem[];
@@ -19,7 +19,7 @@ export const fetchCart = createAsyncThunk('cart/fetchCart', async (_, thunkAPI) 
 export const addCartItem = createAsyncThunk('cart/addCartItem', async (Item: cartItem, thunkAPI) => {
   try {
     const cart = await axios({
-      url: `${BASE_URL}/api/cart/addItem`,
+      url: `/api/cart/addItem`,
       method: "post",
       data: {
         product: Item.product,
@@ -40,13 +40,14 @@ export const addCartItem = createAsyncThunk('cart/addCartItem', async (Item: car
 export const updateCartItem = createAsyncThunk('cart/updateCartItem', async ({ id, func }: { id: number; func: string }, thunkAPI) => {
   try {
     const cart = await axios({
-      url: `${BASE_URL}/api/cart/${func}Quantity`,
+      url: `/api/cart/${func}Quantity`,
       method: "post",
       data: {
         id,
       },
     });
     if (cart) {
+      console.log(cart)
       return cart;
     }
   } catch (error) {
@@ -59,6 +60,6 @@ interface cartItem {
   id?: number;
   product: string;
   image: string;
-  quantity: string;
+  quantity?: string;
   price: string;
 }
